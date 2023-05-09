@@ -5,14 +5,15 @@ const app = express();
 app.use(express.json()); //cada vez que que de una aplicación cliente envíen un dato json puede entenderlo y pasarlo a un objeto de js
 app.use(express.urlencoded({ extended: false })); //cuando envien datos a traves de formularios, los pasa a js. Extended false, solo aceptan datos simples .
 
-//importamos los routes
-const users = require("./src/routes/routes")
+// import routes
+const managerRoutes = require("./src/routes/manager.routes");
+const employeeRoutes = require("./src/routes/employee.routes");
 
 // routes
-// const employee = "/employee";
-// app.use(employee, users);
 const manager = "/manager";
-app.use(manager, users);
+app.use(manager, managerRoutes);
+const employee = "/employee";
+app.use(employee, employeeRoutes);
 
 const PORT = 3000;
 app.listen(PORT);

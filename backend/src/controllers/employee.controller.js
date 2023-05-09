@@ -1,5 +1,5 @@
 const pool = require("../../db");
-const queries = require("../queries");
+const queries = require("../queries/manager.queries");
 
 const getUsers = (req, res) => {
   pool.query(queries.getUsers, (error, response) => {
@@ -13,17 +13,17 @@ const getUsers = (req, res) => {
 };
 
 //no se ha pedido
-const getUserById = (req, res) => {
-  const id = parseInt(req.params.id);
-  pool.query(queries.getUserById, [id], (error, response) => {
-    if (error) {
-      console.log(error);
-      res.status(500).send("Error getting user");
-    } else {
-      res.status(200).json(response.rows);
-    }
-  });
-};
+// const getUserById = (req, res) => {
+//   const id = parseInt(req.params.id);
+//   pool.query(queries.getUserById, [id], (error, response) => {
+//     if (error) {
+//       console.log(error);
+//       res.status(500).send("Error getting user");
+//     } else {
+//       res.status(200).json(response.rows);
+//     }
+//   });
+// };
 
 const createUser = (req, res) => {
   const { name, email, password, role, number_absences } = req.body;
@@ -86,7 +86,7 @@ const deleteUser = (req, res) => {
 
 module.exports = {
   getUsers,
-  getUserById,
+  // getUserById,
   createUser,
   editUser,
   deleteUser,

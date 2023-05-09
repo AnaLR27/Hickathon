@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const router = Router();
 
-const userController = require("../controllers/users.cotroller");
+const userController = require("../controllers/manager.cotroller");
 
+// employee
 // employee
 // crear vacacion
 // router.post("/create", controller.create);
@@ -11,7 +12,7 @@ const userController = require("../controllers/users.cotroller");
 // delete vacacion
 // router.get("/list", controller.list);
 
-// ROUTES MANAGER
+// RUTAS MANAGER
 // view users
 router.get("/users", userController.getUsers);
 
@@ -28,6 +29,6 @@ router.delete("/users/:id", userController.deleteUser);
 // review absences requests
 // router.get("/absences", userController.getAbsences);
 
-router.get("/user/:id", userController.getUserById);
+// router.get("/user/:id", userController.getUserById);
 
 module.exports = router;
