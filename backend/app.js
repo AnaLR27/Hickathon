@@ -9,8 +9,10 @@ app.use(express.urlencoded({ extended: false })); //cuando envien datos a traves
 const users = require("./src/routes/routes")
 
 // routes
-const url = "/api";
-app.use(url, users);
+// const employee = "/employee";
+// app.use(employee, users);
+const manager = "/manager";
+app.use(manager, users);
 
 const PORT = 3000;
 app.listen(PORT);
