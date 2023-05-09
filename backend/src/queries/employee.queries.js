@@ -1,17 +1,13 @@
-const getUsers = "SELECT * FROM users";
-const getUserById = "SELECT * FROM users WHERE id = $1";
-const checkEmailExists = "SELECT u FROM users u WHERE u.email = $1";
-const createUser =
-  "INSERT INTO users (name, email, password, role, number_absences) VALUES ($1, $2, $3, $4, $5);";
-const editUser =
-  "UPDATE users SET name = $1, email=$2, password=$3, role=$4, number_absences=$5 WHERE id=$6 RETURNING *";
-const deleteUser = "DELETE FROM users WHERE id = $1";
+const getAbsencesById = "SELECT * FROM absences WHERE id_user = $1";
+const createAbsence =
+  "INSERT INTO absences (id_user, start_date, end_date, status) VALUES ($1, $2, $3, $4);";
+const editAbsence =
+  "UPDATE absences SET start_date=$2, end_date=$3, status=$4 WHERE id_user = $1 AND id=$5 RETURNING *";
+const deleteAbsence = "DELETE FROM absences WHERE id = $1";
 
 module.exports = {
-  getUsers,
-  getUserById,
-  checkEmailExists,
-  createUser,
-  editUser,
-  deleteUser
+  getAbsencesById,
+  createAbsence,
+  editAbsence,
+  deleteAbsence,
 };

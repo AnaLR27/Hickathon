@@ -5,11 +5,14 @@ const createUser =
 const editUser =
   "UPDATE users SET name = $1, email=$2, password=$3, role=$4, number_absences=$5 WHERE id=$6 RETURNING *";
 const deleteUser = "DELETE FROM users WHERE id = $1";
+const getAbsences = "SELECT * FROM absences";
+
 
 module.exports = {
   getUsers,
   checkEmailExists,
   createUser,
   editUser,
-  deleteUser
+  deleteUser,
+  getAbsences
 };

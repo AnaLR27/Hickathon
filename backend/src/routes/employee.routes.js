@@ -1,34 +1,19 @@
 const { Router } = require("express");
 const router = Router();
 
-const userController = require("../controllers/manager.cotroller");
-
-// employee
-// employee
-// crear vacacion
-// router.post("/create", controller.create);
-//ver todas las vacaciones
-// editar vacacion
-// delete vacacion
-// router.get("/list", controller.list);
-
-// RUTAS MANAGER
-// view users
-router.get("/users", userController.getUsers);
-
-// add user
-router.post("/users", userController.createUser);
-
-// edit user
-router.put("/users/:id", userController.editUser);
-
-// delete user
-router.delete("/users/:id", userController.deleteUser);
+const absencesController = require("../controllers/employee.controller");
 
 // ROUTES EMPLOYEE
-// review absences requests
-// router.get("/absences", userController.getAbsences);
+// view absences request (id)
+router.get("/absences/:id", absencesController.getAbsenceById);
 
-// router.get("/user/:id", userController.getUserById);
+// create absence
+router.post("/absences", absencesController.createAbsence);
+
+// edit absence
+router.put("/absences/:id_user/:id", absencesController.editAbsence);
+
+// delete absence
+router.delete("/absences/:id", absencesController.deleteAbsence);
 
 module.exports = router;

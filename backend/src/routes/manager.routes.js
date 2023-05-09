@@ -17,4 +17,8 @@ router.put("/users/:id", managerController.editUser);
 // delete user
 router.delete("/users/:id", managerController.deleteUser);
 
+// review absences requests
+router.get("/absences", managerController.getAbsences);
+
+
 module.exports = router;

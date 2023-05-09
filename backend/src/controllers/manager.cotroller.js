@@ -29,7 +29,7 @@ const createUser = (req, res) => {
             console.log(error);
             res.status(500).send("Error creating user");
           } else {
-            res.status(201).send("Student Created Succesfully!");
+            res.status(201).send("User Created Succesfully!");
           }
         }
       );
@@ -50,7 +50,7 @@ const editUser = (req, res) => {
         res.status(500).send("Error editing user");
       } else {
         res.status(200).json(response.rows);
-        console.error("Student edited succesfully!");
+        console.error("User edited succesfully!");
       }
     }
   );
@@ -69,11 +69,21 @@ const deleteUser = (req, res) => {
   });
 };
 
+const getAbsences = (req, res) => {
+  pool.query(queries.getAbsences, (error, response) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send("Error getting users");
+    } else {
+      res.status(200).json(response.rows);
+    }
+  });
+};
 
 module.exports = {
   getUsers,
-  // getUserById,
   createUser,
   editUser,
   deleteUser,
+  getAbsences,
 };
