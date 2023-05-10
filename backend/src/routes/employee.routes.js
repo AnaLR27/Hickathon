@@ -8,7 +8,7 @@ const absencesController = require("../controllers/employee.controller");
 router.get("/absences/:id", absencesController.getAbsenceById);
 
 // create absence
-router.post("/absences", absencesController.createAbsence);
+router.post("/absences/:id", absencesController.createAbsence);
 
 // edit absence
 router.put("/absences/:id_user/:id", absencesController.editAbsence);

@@ -2,7 +2,8 @@ const pool = require("../../db");
 const queries = require("../queries/employee.queries");
 
 const createAbsence = (req, res) => {
-  const { id_user, start_date, end_date, status } = req.body;
+  const id_user = parseInt(req.params.id);
+  const { start_date, end_date, status } = req.body;
 
   pool.query(
     queries.createAbsence,
