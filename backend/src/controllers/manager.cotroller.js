@@ -58,13 +58,21 @@ const editUser = (req, res) => {
 
 const deleteUser = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query(queries.deleteUser, [id], (error, response) => {
+
+  // verify if user exist before delete
+  pool.query(queries.getUserById, [id], (error, result) => {
     if (error) {
-      console.error(error);
-      res.status(500).send("Error deleting user");
+      return res
+        .status(500)
+        .json({ message: "Error deleting user from database" });
+    } else if (result.rows.length === 0) {
+      // If user with the specified ID was not found, return a 404 error
+      return res.status(404).json({ message: "User not found" });
     } else {
-      res.status(200).json({ message: `User with ID ${id} has been delete` });
-      console.log("User deleted successfully");
+      pool.query(queries.deleteUser, [id], (error, response) => {
+        res.status(200).json({ message: `User with ID ${id} has been delete` });
+        console.log("User deleted successfully");
+      });
     }
   });
 };

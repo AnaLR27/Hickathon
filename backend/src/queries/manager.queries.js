@@ -1,4 +1,5 @@
 const getUsers = "SELECT * FROM users";
+const getUserById = "SELECT * FROM users WHERE id = $1";
 const checkEmailExists = "SELECT u FROM users u WHERE u.email = $1";
 const createUser =
   "INSERT INTO users (name, email, password, role, number_absences) VALUES ($1, $2, $3, $4, $5);";
@@ -10,6 +11,7 @@ const getAbsences = "SELECT * FROM absences";
 
 module.exports = {
   getUsers,
+  getUserById,
   checkEmailExists,
   createUser,
   editUser,

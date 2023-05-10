@@ -9,8 +9,8 @@ const createAbsence = (req, res) => {
     [id_user, start_date, end_date, status],
     (error, response) => {
       if (error) {
-        console.log(error);
-        res.status(500).send("Error creating user");
+        console.log("Error creating absence");
+        res.status(500).send("Error creating absence");
       } else {
         res.status(201).send("Absence Created Succesfully!");
       }
@@ -20,9 +20,9 @@ const createAbsence = (req, res) => {
 
 const getAbsenceById = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query(queries.getAbsencesById, [id], (error, response) => {
+  pool.query(queries.getAbsencesByUserId, [id], (error, response) => {
     if (error) {
-      console.log(error);
+      console.log("Error getting absence");
       res.status(500).send("Error getting absence");
     } else {
       res.status(200).json(response.rows);
@@ -40,8 +40,8 @@ const editAbsence = (req, res) => {
     [id_user, start_date, end_date, status, id],
     (error, response) => {
       if (error) {
-        console.error(error);
-        res.status(500).send("Error editing user");
+        console.error("Error editing absence");
+        res.status(500).send("Error editing absence");
       } else {
         res.status(200).json(response.rows);
         console.error("Absence edited succesfully!");
@@ -52,13 +52,24 @@ const editAbsence = (req, res) => {
 
 const deleteAbsence = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query(queries.deleteAbsence, [id], (error, response) => {
-    if (error) {
-      console.error(error);
-      res.status(500).send("Error deleting user");
+  // // verify if absence exist before delete
+  pool.query(queries.getAbsencesByAbsenceId, [id], (error, result) => {
+    if (result.rows.length === 0) {
+      // If absence with the specified ID was not found, return a 404 error
+      console.log("Absence not found");
+      return res.status(404).json({ message: "Absence not found" });
     } else {
-      res.status(200).json({ message: `User with ID ${id} has been delete` });
-      console.log("Absence deleted successfully");
+      pool.query(queries.deleteAbsence, [id], (error, response) => {
+        if (error) {
+          console.error("Error deleting absence from database");
+          res.status(500).send("Error deleting absence from database");
+        } else {
+          res
+            .status(200)
+            .json({ message: `Absence with ID ${id} has been delete` });
+          console.log("Absence deleted successfully");
+        }
+      });
     }
   });
 };
