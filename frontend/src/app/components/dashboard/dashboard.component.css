@@ -1,0 +1,48 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-sidenav-container {
+    height: calc(100vh - 65px);
+  }
+  .mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background-color: rgb(141, 158, 211);
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .menu-button {
+    margin-top: 16px;
+  }
+  .menu-button a{
+    text-decoration: none;
+    color: rgb(107, 134, 214);;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  .example-full-width {
+    width: 100%;
+  }
+  .content {
+    height: calc(100vh - 98px);
+    border-radius: 10px;
+    margin: 16px;
+    margin-left: 32px;
+    display: flex;
+    font-size: 2rem;
+    color: lightgrey;
+  }
+  mat-divider{
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  mat-sidenav-content{
+    height: calc(100vh - 65px);
+  
+  }
